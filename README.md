@@ -1,35 +1,33 @@
 # Heroku Deploy - GitHub Action
 
-A simple action to build, push and deploy containers to you  Heroku app.
+Action to build, push and deploy containers to you Heroku app.
+
+Original Author: [Jean Carlos Taveras](https://github.com/jctaveras)
+
+Adapted by: [Henrique Leite](https://github.com/henriqueleite42)
 
 ## How to use it
 
 ```yml
-name: '' #set whatevername you want to your github job
-on: {} # set the events you would like to trigger this job
+name: "" #set whatevername you want to your github job
+on: # set the events you would like to trigger this job
+  push:
+    branches: [master]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Build, Push and Deploy to Heroku #set the whatever name you want to this step
+      - name: Build, Push and Deploy to Heroku
         id: heroku
-        uses: jctaveras/heroku-deploy@v1.0.0  # use the latest version of the action
+        uses: henriqueleite42/action-heroku-deploy@v1.0.0 # use the latest version of the action
         with:
           email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
           api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
           app_name: ${{ secrets.HEROKU_APP_NAME }} # you aplication name
-          dockerfile_path: '' # set the path to the folder wher the Dokerfile is located
-          options: '' # Docker Build Options
-          formation: '' # Docker Dyno Formation. By default is web
+          dockerfile_path: "." # OPTIONAL: set the path to the folder wher the Dokerfile is located, the default is the rootDir
+          dockerfile_name: "." # OPTIONAL: Custom name to your dockerfile, like Dockerfile.dev
+          options: "" # OPTIONAL: Docker Build Options
+          formation: "web" # OPTIONAL: Docker Dyno Formation. By default is web
 ```
-
-| Variables          | Description                         | Required       |
-|:----------------:|:-----------------------------:|:-------------:|
-| email                | Heroku Email Account          | ✅               |
-| api_key             | Heroku API Key                    | ✅               |
-| app_name         | Heroku App Name               | ✅               |
-| dockerfile_path | Path where your Docker File | ✅               |
-| options             | Docker Build Options           | ❌               |
-| formation           | Heroku Formation (Default: `web`)       | ❌               |

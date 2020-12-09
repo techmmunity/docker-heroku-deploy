@@ -1,17 +1,17 @@
 {
-  "name": "deploy-heroku",
-  "version": "2.0.0",
-  "description": "A simple action to deploy container to Heroku Container Registry",
-  "main": "index.js",
-  "scripts": {},
-  "husky": {
-    "hooks": {
-      "pre-commit": "npx @zeit/ncc build index.js && git add ."
-    }
+  "name": "action-heroku-deploy",
+  "version": "1.0.0",
+  "main": "tsc/index.js",
+  "author": "Henrique Leite",
+  "description": "Action to deploy container to Heroku Container Registry",
+  "homepage": "https://github.com/henriqueleite42/action-heroku-deploy#readme",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/henriqueleite42/action-heroku-deploy/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jctaveras/heroku-deploy.git"
+    "url": "git+https://github.com/henriqueleite42/action-heroku-deploy.git"
   },
   "keywords": [
     "github",
@@ -21,17 +21,42 @@
     "container",
     "docker"
   ],
-  "author": "Jean Carlos Tavera",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jctaveras/heroku-deploy/issues"
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn clean:build && lint-staged && git add dist"
+    }
   },
-  "homepage": "https://github.com/jctaveras/heroku-deploy#readme",
-  "dependencies": {
-    "@actions/core": "^1.2.3",
-    "@actions/github": "^2.1.1"
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "npx prettier --write",
+      "eslint src/*.ts --fix-dry-run"
+    ]
   },
   "devDependencies": {
-    "husky": "^4.2.5"
+    "@typescript-eslint/eslint-plugin": "^3.7.0",
+    "@typescript-eslint/parser": "^3.7.0",
+    "@vercel/ncc": "^0.25.1",
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-import-helpers": "^1.1.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.3.5",
+    "lint-staged": "^10.5.3",
+    "prettier": "^2.0.5",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "@actions/github": "^4.0.0"
+  },
+  "scripts": {
+    "clean": "rm -rf dist && rm -rf tsc",
+    "build": "tsc && ncc build --source-map",
+    "clean:build": "yarn clean && yarn build"
   }
 }
