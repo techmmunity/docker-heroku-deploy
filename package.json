@@ -1,17 +1,17 @@
 {
-  "name": "action-heroku-deploy",
+  "name": "docker-heroku-deploy",
   "version": "1.0.0",
   "main": "tsc/index.js",
-  "author": "Henrique Leite",
+  "author": "Techmmunity",
   "description": "Action to deploy container to Heroku Container Registry",
-  "homepage": "https://github.com/henriqueleite42/action-heroku-deploy#readme",
+  "homepage": "https://github.com/Techmmunity/docker-heroku-deploy#readme",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/henriqueleite42/action-heroku-deploy/issues"
+    "url": "https://github.com/Techmmunity/docker-heroku-deploy/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/henriqueleite42/action-heroku-deploy.git"
+    "url": "git+https://github.com/Techmmunity/docker-heroku-deploy.git"
   },
   "keywords": [
     "github",

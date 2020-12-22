@@ -1,10 +1,10 @@
-# Heroku Deploy - GitHub Action
+# Docker To Heroku Deploy - GitHub Action
 
 Action to build, push and deploy containers to you Heroku app.
 
 Original Author: [Jean Carlos Taveras](https://github.com/jctaveras)
 
-Adapted by: [Henrique Leite](https://github.com/henriqueleite42)
+Adapted by: [Techmmunity](https://github.com/Techmmunity)
 
 ## How to use it
 
@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v2
       - name: Build, Push and Deploy to Heroku
         id: heroku
-        uses: henriqueleite42/action-heroku-deploy@v1.0.0 # use the latest version of the action
+        uses: Techmmunity/docker-heroku-deploy@v1.0.0 # use the latest version of the action
         with:
           email: ${{ secrets.HEROKU_EMAIL }} # your heroku email
           api_key: ${{ secrets.HEROKU_API_KEY }} # your  heroku api key
